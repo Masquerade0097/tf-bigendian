@@ -16,4 +16,4 @@ This repository contains 2 python notebooks -
 
 These scripts traverse the model graph in the TF SavedModel/Frozen model, unwraps the Proto messages and identify the tensors involved. Then byte-swap the tensors having the `tensor_content` field as per the the dataype of the tensors. Then we rewrite the new graph definition of the tf model to a protobuf file which will ready to be use on big-endian systems.
 
-Both of the scripts are tested to work on IBM Z (s390x architecture) machine.
+The models exported from these scripts are tested to work on IBM Z (s390x architecture) machine.
