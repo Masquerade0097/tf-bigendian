@@ -2,7 +2,7 @@
 This repository contains scripts that fix the pretrained TF models (SavedModel/Frozen Model) and make them usable on big-endian systems.
 
 ## Problem
-As commented in the TF (codebase)[https://github.com/tensorflow/tensorflow/blob/f5fb417ebc18485b7e2493e766d658da539f007c/tensorflow/core/framework/tensor.proto#L35], `tensor_content` is "a serialized raw tensor content from either Tensor::AsProtoTensorContent or
+As commented in the TF [codebase](https://github.com/tensorflow/tensorflow/blob/f5fb417ebc18485b7e2493e766d658da539f007c/tensorflow/core/framework/tensor.proto#L35), `tensor_content` is "a serialized raw tensor content from either Tensor::AsProtoTensorContent or
 // memcpy in tensorflow::grpc::EncodeTensorToByteBuffer". The byte order for tensor_content is same as the byte order of the machine in which the model is created. The models available at https://github.com/tensorflow/models were created and trained on machines with little-endian byte order which makes the byte order for tensor_content little-endian.
 
 `tensor_content` is a part of the TensorProto message which is embedded inside AttrValue messages embedded inside NodeDef messages embedded inside FunctionDef messages embedded inside FunctionDefLibrary messages embedded inside GraphDef messages embedded inside MetaGraphDef messages embedded inside SavedModel messages embedded inside the saved_model.pb file. This is the reason SavedModel fails to load on big-endian systems.
